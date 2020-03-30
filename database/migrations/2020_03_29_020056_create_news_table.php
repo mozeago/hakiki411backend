@@ -15,8 +15,14 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('summary');
+            $table->enum('category', ['Fake News','Verified News']);
+            $table->integer('points');
+            $table->string('imageUrl');
             $table->timestamps();
-        });
+            }
+        );
     }
 
     /**
