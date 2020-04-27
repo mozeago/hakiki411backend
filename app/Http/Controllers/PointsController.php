@@ -3,27 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\News;
-class NewsController extends Controller
+use Illuminate\Support\Facades\DB;
+use App\Points;
+class PointsController extends Controller
 {
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return News::all();
+        //
     }
+
     /**
-     * Display the specified resource.
+     * Show the form for creating a new resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( News $news)
+    public function create()
     {
-        return News::find($news);
+        //
     }
 
     /**
@@ -34,10 +35,30 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        $news=News::create($request->all());
-        return back()->with("message", " successfully saved Article");
+
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
     /**
      * Update the specified resource in storage.
@@ -46,11 +67,11 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(Request $request, $user_id)
     {
-        $news=News::findOrFail($news);
-        $news->update($request->all());
-        return response()->json($news, 200);
+        $user=Points::updateOrCreate(["user_id"=>$user_id,
+        "scorepoints"=>$request->scorepoints]);
+        return $user;
     }
 
     /**
@@ -59,10 +80,8 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Request $request,News $news)
+    public function destroy($id)
     {
-        $news=News::findOrFail($news);
-        $news->delete();
-        return response()->json($news, 204);
+        //
     }
 }
