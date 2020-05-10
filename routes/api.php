@@ -1,6 +1,4 @@
 <?php
-
-use App\Http\Controllers\NewsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\News;
@@ -12,3 +10,4 @@ Route::get('news/{news}', 'NewsController@show');
 Route::post('news', 'NewsController@store');
 Route::put('news/{news}', 'NewsController@update');
 Route::delete('news/{news}', 'NewsController@delete');
+Route::post('points', 'PointsController@update')->name('storepoints');

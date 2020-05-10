@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Points;
+
 class PointsController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class PointsController extends Controller
      */
     public function index()
     {
-        //
+        return DB::select('select * from points');
     }
 
     /**
@@ -35,7 +36,6 @@ class PointsController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
     /**
@@ -67,10 +67,9 @@ class PointsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $user_id)
+    public function update(Request $request)
     {
-        $user=Points::updateOrCreate(["user_id"=>$user_id,
-        "scorepoints"=>$request->scorepoints]);
+           $user =Points::updateOrCreate(['user_id'=>$request->user_id],['scorepoints'=>$request->scorepoints]);
         return $user;
     }
 
